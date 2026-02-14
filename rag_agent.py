@@ -49,25 +49,27 @@ class RAGChatbot:
         self.graph = self._build_graph()
     
     def _init_vectorstore(self):
-        """Initialize Pinecone vector store"""
+        """Initialize Pinecone vector store (v3 API)"""
         if not self.vectorstore:
             try:
-                import pinecone
+                from pinecone import Pinecone
 
-                pinecone.init(
-                    api_key=os.getenv("PINECONE_API_KEY"),
-                    environment=os.getenv("PINECONE_ENVIRONMENT")
+                pc = Pinecone(
+                    api_key=os.getenv("PINECONE_API_KEY")
                 )
 
-                index = pinecone.Index(self.index_name)
+                index = pc.Index(self.index_name)
 
-                self.vectorstore = Pinecone(
-                    index,
-                    self.embeddings,
-                    "text"
+                from langchain_community.vectorstores import Pinecone as PineconeStore
+
+                self.vectorstore = PineconeStore(
+                    index=index,
+                    embedding=self.embeddings,
+                    text_key="text"
                 )
 
                 logger.info(f"✅ Connected to Pinecone index: {self.index_name}")
+
             except Exception as e:
                 logger.error(f"❌ Failed to connect to Pinecone: {e}")
                 raise
