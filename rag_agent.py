@@ -7,7 +7,7 @@ from typing import Optional, List, Dict, Any
 from datetime import datetime
 
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
-from langchain_pinecone import PineconeVectorStore
+from langchain_community.vectorstores import Pinecone
 from langchain_core.tools import Tool, create_retriever_tool
 from langchain_core.messages import HumanMessage, AIMessage, BaseMessage
 from langgraph.graph import StateGraph, START, END
@@ -52,10 +52,21 @@ class RAGChatbot:
         """Initialize Pinecone vector store"""
         if not self.vectorstore:
             try:
-                self.vectorstore = PineconeVectorStore(
-                    index_name=self.index_name,
-                    embedding=self.embeddings
+                import pinecone
+
+                pinecone.init(
+                    api_key=os.getenv("PINECONE_API_KEY"),
+                    environment=os.getenv("PINECONE_ENVIRONMENT")
                 )
+
+                index = pinecone.Index(self.index_name)
+
+                self.vectorstore = Pinecone(
+                    index,
+                    self.embeddings,
+                    "text"
+                )
+
                 logger.info(f"✅ Connected to Pinecone index: {self.index_name}")
             except Exception as e:
                 logger.error(f"❌ Failed to connect to Pinecone: {e}")
