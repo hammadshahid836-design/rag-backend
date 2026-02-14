@@ -52,7 +52,7 @@ orjson==3.11.7
 packaging==23.2
 pathspec==1.0.4
 pinecone==3.0.1
-pinecone-client==3.0.0
+pinecone-client==3.0.1
 platformdirs==4.8.0
 pluggy==1.6.0
 propcache==0.4.1
