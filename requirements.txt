@@ -35,11 +35,11 @@ idna==3.11
 iniconfig==2.3.0
 jsonpatch==1.33
 jsonpointer==3.0.0
-langchain==0.1.20
-langchain-community==0.0.38
-langchain-core==0.1.53
-langchain-google-genai==1.0.4
-langchain-pinecone==0.0.3
+langchain>=0.1.11,<0.2
+langchain-community>=0.0.28
+langchain-google-genai>=1.0.0
+langgraph>=0.0.31,<0.1
+langchain-pinecone==0.0.1
 langchain-text-splitters==0.0.1
 langgraph==0.0.51
 langsmith==0.1.147
