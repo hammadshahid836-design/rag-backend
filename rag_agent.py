@@ -5,7 +5,7 @@ import os
 import logging
 from typing import Optional, List, Dict, Any
 from datetime import datetime
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import Pinecone
 from langchain_core.tools import Tool, create_retriever_tool
