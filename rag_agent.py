@@ -5,8 +5,8 @@ import os
 import logging
 from typing import Optional, List, Dict, Any
 from datetime import datetime
-
-from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import Pinecone
 from langchain_core.tools import Tool, create_retriever_tool
 from langchain_core.messages import HumanMessage, AIMessage, BaseMessage
@@ -37,9 +37,9 @@ class RAGChatbot:
             db_service: DatabaseService instance for local database
         """
         self.db_service = db_service or DatabaseService()
-        self.embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
-        self.llm = ChatGoogleGenerativeAI(
-            model="gemini-2.0-flash",
+        self.embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+        self.llm = ChatOpenAI(
+            model="gpt-4o-mini",
             temperature=0.3,
             max_tokens=2048
         )

@@ -7,7 +7,7 @@ services:
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:
-      - key: GOOGLE_API_KEY
+      - key: OPENAI_API_KEY
         scope: build,runtime
         sync: false
       - key: PINECONE_API_KEY
@@ -30,7 +30,7 @@ services:
       - key: FRONTEND_URL
         value: https://your-frontend.vercel.app
       - key: LLM_MODEL
-        value: gemini-2.0-flash
+        value: gpt-4o-mini
       - key: TEMPERATURE
         value: "0.3"
       - key: MAX_TOKENS
