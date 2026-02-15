@@ -44,7 +44,7 @@ class RAGChatbot:
             max_tokens=2048
         )
         
-        self.index_name = os.getenv("PINECONE_INDEX_NAME", "rag-chatbot")
+        self.index_name = os.getenv("PINECONE_INDEX_NAME", "rag12")
         self.vectorstore = None
         self.graph = self._build_graph()
     
