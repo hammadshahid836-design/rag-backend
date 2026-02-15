@@ -65,7 +65,7 @@ except:
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins_list,
+    allow_origins=[ "https://rag-frontend-bct6dqtw-hammadshahid836-designs-projects.vercel.app",],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
