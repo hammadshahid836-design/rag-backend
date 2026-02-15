@@ -14,7 +14,7 @@ services:
         scope: build,runtime
         sync: false
       - key: PINECONE_INDEX_NAME
-        value: rag-chatbot
+        value: rag12
       - key: PINECONE_ENVIRONMENT
         value: us-east-1-aws
       - key: ENVIRONMENT
